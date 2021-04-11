@@ -35,9 +35,21 @@ fun LoginScreen() {
             PasswordInput()
 
             TermsOfServiceLabel()
+            Spacer(
+                modifier = Modifier
+                    .height(16.dp)
+            )
+            LoginButton()
         }
 
     }
+}
+
+@Composable
+private fun LoginButton() {
+    BloomSecondaryButton(
+        buttonText = "Log in"
+    )
 }
 
 @Composable
