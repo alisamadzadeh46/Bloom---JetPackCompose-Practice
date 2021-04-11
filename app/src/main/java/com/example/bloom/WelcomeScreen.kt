@@ -2,9 +2,8 @@ package com.example.bloom
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bloom.ui.theme.BloomTheme
+import com.example.bloom.ui.theme.Pink900
+import com.example.bloom.ui.theme.White
 
 @Composable
 fun WelcomeScreen() {
@@ -94,9 +95,15 @@ private fun AppSubtitle() {
 @Composable
 private fun CreateAccountButton() {
     Button(
+        colors = buttonColors(
+            backgroundColor = MaterialTheme.colors.secondary,
+        ),
+        shape = MaterialTheme.shapes.medium,
         onClick = { /*TODO*/ },
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .height(48.dp)
+            .padding(horizontal = 16.dp),
     ) {
         Text("Create account")
     }
@@ -104,12 +111,26 @@ private fun CreateAccountButton() {
 
 @Composable
 private fun LoginButton() {
-    Button(
+    val isLight = MaterialTheme.colors.isLight
+    val textColor = if (isLight) {
+        Pink900
+    } else {
+        White
+    }
+    TextButton(
         onClick = { /*TODO*/ },
+        shape = MaterialTheme.shapes.medium,
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .height(48.dp)
+            .padding(horizontal = 16.dp),
     ) {
-        Text("Log in")
+        Text(
+            text = "Log in",
+            color = textColor
+        )
+
+
     }
 }
 
