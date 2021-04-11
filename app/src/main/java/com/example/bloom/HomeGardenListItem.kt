@@ -57,6 +57,9 @@ private fun PlantCheckbox() {
         onCheckedChange = { isChecked ->
             checkedState.value = isChecked
         },
+        colors = CheckboxDefaults.colors(
+            checkmarkColor = MaterialTheme.colors.background,
+        ),
         modifier = Modifier
             .size(24.dp)
     )

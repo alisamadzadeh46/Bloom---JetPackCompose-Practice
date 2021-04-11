@@ -6,17 +6,82 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bloom.ui.theme.BloomTheme
 
 @Composable
 fun HomeScreen() {
+    Scaffold(
+        bottomBar = {
+            BloomBottomBar()
+        }
+    ) {
+        HomeScreenContent()
+    }
+
+}
+
+@Composable
+private fun BloomBottomBar() {
+    BottomAppBar(
+        backgroundColor = MaterialTheme.colors.primary,
+    ) {
+        BloomBottomButton(
+            selected = true,
+            icon = Icons.Default.Home,
+            labelText = "Home"
+        )
+        BloomBottomButton(
+            selected = false,
+            icon = Icons.Default.FavoriteBorder,
+            labelText = "Favorites"
+        )
+        BloomBottomButton(
+            selected = false,
+            icon = Icons.Default.AccountCircle,
+            labelText = "Profile"
+        )
+        BloomBottomButton(
+            selected = false,
+            icon = Icons.Default.ShoppingCart,
+            labelText = "Cart"
+        )
+    }
+}
+
+@Composable
+private fun BloomBottomButton(
+    selected: Boolean,
+    icon: ImageVector,
+    labelText: String,
+) {
+    BottomAppBar {
+        BottomNavigationItem(
+            selected = selected,
+            onClick = { /*TODO*/ },
+            icon = {
+                Icon(
+                    icon,
+                    contentDescription = null,
+                )
+            },
+            label = {
+                Text(labelText)
+            }
+        )
+
+
+    }
+}
+
+@Composable
+private fun HomeScreenContent() {
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier
