@@ -21,8 +21,8 @@ fun HomeScreen() {
         bottomBar = {
             BloomBottomBar()
         }
-    ) {
-        HomeScreenContent()
+    ) { paddingValues ->
+        HomeScreenContent(paddingValues)
     }
 
 }
@@ -56,7 +56,7 @@ private fun BloomBottomBar() {
 }
 
 @Composable
-private fun BloomBottomButton(
+private fun RowScope.BloomBottomButton(
     selected: Boolean,
     icon: ImageVector,
     labelText: String,
@@ -81,16 +81,18 @@ private fun BloomBottomButton(
 }
 
 @Composable
-private fun HomeScreenContent() {
+private fun HomeScreenContent(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier
             .fillMaxSize()
+
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(rememberScrollState())
+                .padding(paddingValues),
 
             )
         {
@@ -133,7 +135,8 @@ private fun HomeGardenSection() {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .padding(bottom = 16.dp),
     ) {
         homeGardenThemes.forEach { theme ->
             HomeGardenListItem(theme)

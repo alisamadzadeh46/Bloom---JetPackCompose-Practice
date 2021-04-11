@@ -11,6 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
@@ -102,7 +103,7 @@ private fun CreateAccountButton() {
 }
 
 @Composable
-private fun LoginButton(navController: NavHostController) {
+private fun LoginButton(navController: NavController) {
     val isLight = MaterialTheme.colors.isLight
     val textColor = if (isLight) {
         Pink900

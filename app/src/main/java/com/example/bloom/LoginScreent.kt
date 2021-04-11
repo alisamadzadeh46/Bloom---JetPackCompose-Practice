@@ -16,10 +16,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.bloom.ui.theme.BloomTheme
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier
@@ -44,16 +47,19 @@ fun LoginScreen() {
                 modifier = Modifier
                     .height(16.dp)
             )
-            LoginButton()
+            LoginButton(navController)
         }
 
     }
 }
 
 @Composable
-private fun LoginButton() {
+private fun LoginButton(navController: NavController) {
     BloomSecondaryButton(
-        buttonText = "Log in"
+        buttonText = "Log in",
+        onClick = {
+            navController.navigate("home")
+        }
     )
 }
 
@@ -131,7 +137,7 @@ private fun LogInHeader() {
 @Composable
 private fun PreviewDarkLogin() {
     BloomTheme(darkTheme = true) {
-        LoginScreen()
+        LoginScreen(rememberNavController())
     }
 }
 
@@ -139,6 +145,6 @@ private fun PreviewDarkLogin() {
 @Composable
 private fun PreviewLightLogin() {
     BloomTheme(darkTheme = false) {
-        LoginScreen()
+        LoginScreen(rememberNavController())
     }
 }
