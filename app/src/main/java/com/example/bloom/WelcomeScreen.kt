@@ -3,7 +3,6 @@ package com.example.bloom
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,12 +11,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.bloom.ui.theme.BloomTheme
 import com.example.bloom.ui.theme.Pink900
 import com.example.bloom.ui.theme.White
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(navController: NavHostController) {
     Surface(
         color = MaterialTheme.colors.primary,
         modifier = Modifier
@@ -26,12 +28,12 @@ fun WelcomeScreen() {
     )
     {
         WelcomeBackground()
-        WelcomeScreenContent()
+        WelcomeScreenContent(navController)
     }
 }
 
 @Composable
-private fun WelcomeScreenContent() {
+private fun WelcomeScreenContent(navController: NavHostController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -46,7 +48,7 @@ private fun WelcomeScreenContent() {
         Spacer(modifier = Modifier.height(48.dp))
         CreateAccountButton()
         Spacer(modifier = Modifier.height(8.dp))
-        LoginButton()
+        LoginButton(navController)
     }
 }
 
@@ -94,13 +96,13 @@ private fun AppSubtitle() {
 
 @Composable
 private fun CreateAccountButton() {
-  BloomSecondaryButton(
-      buttonText = "Create account"
-  )
+    BloomSecondaryButton(
+        buttonText = "Create account"
+    )
 }
 
 @Composable
-private fun LoginButton() {
+private fun LoginButton(navController: NavHostController) {
     val isLight = MaterialTheme.colors.isLight
     val textColor = if (isLight) {
         Pink900
@@ -108,7 +110,9 @@ private fun LoginButton() {
         White
     }
     TextButton(
-        onClick = { /*TODO*/ },
+        onClick = {
+            navController.navigate("login")
+        },
         shape = MaterialTheme.shapes.medium,
         modifier = Modifier
             .fillMaxWidth()
@@ -145,7 +149,7 @@ private fun WelcomeBackground() {
 @Composable
 private fun PreviewDarkWelcomeScreen() {
     BloomTheme(darkTheme = true) {
-        WelcomeScreen()
+        WelcomeScreen(rememberNavController())
     }
 }
 
@@ -153,6 +157,6 @@ private fun PreviewDarkWelcomeScreen() {
 @Composable
 private fun PreviewLightWelcomeScreen() {
     BloomTheme(darkTheme = false) {
-        WelcomeScreen()
+        WelcomeScreen(rememberNavController())
     }
 }
