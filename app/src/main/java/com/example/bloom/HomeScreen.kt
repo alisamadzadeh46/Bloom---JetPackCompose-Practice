@@ -3,6 +3,7 @@ package com.example.bloom
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
@@ -24,7 +25,7 @@ fun HomeScreen() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 18.dp),
+                .verticalScroll(rememberScrollState()),
 
             )
         {
@@ -63,6 +64,15 @@ private fun HomeGardenSection() {
 
 
         )
+    }
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier
+            .padding(horizontal = 16.dp),
+    ) {
+        homeGardenThemes.forEach { theme ->
+            HomeGardenListItem(theme)
+        }
     }
 }
 
