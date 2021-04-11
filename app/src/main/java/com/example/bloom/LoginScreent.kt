@@ -1,13 +1,18 @@
 package com.example.bloom
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -67,10 +72,19 @@ private fun TermsOfServiceLabel() {
 
 @Composable
 private fun PasswordInput() {
+    val textState = remember {
+        mutableStateOf("")
+    }
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = textState.value,
+        onValueChange = { newText ->
+            textState.value = newText
+        },
         label = { Text("Password (8+ characters)") },
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = KeyboardType.Password,
+        ),
         modifier = Modifier
             .fillMaxWidth(),
     )
@@ -79,10 +93,19 @@ private fun PasswordInput() {
 
 @Composable
 private fun EmailInput() {
+    val textState = remember {
+        mutableStateOf("")
+    }
+
     OutlinedTextField(
-        value = "",
-        onValueChange = {},
+        value = textState.value,
+        onValueChange = { newString ->
+            textState.value = newString
+        },
         label = { Text("Email address") },
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = KeyboardType.Email,
+        ),
         modifier = Modifier
             .fillMaxWidth(),
 
