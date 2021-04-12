@@ -1,4 +1,4 @@
-package com.example.bloom
+package com.example.bloom.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

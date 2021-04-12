@@ -1,4 +1,4 @@
-package com.example.bloom
+package com.example.bloom.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
+import com.example.bloom.utils.BloomSecondaryButton
 import com.example.bloom.ui.theme.BloomTheme
 
 @Composable

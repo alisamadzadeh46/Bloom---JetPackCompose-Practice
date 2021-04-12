@@ -1,4 +1,4 @@
-package com.example.bloom
+package com.example.bloom.view
 
 import android.content.res.Configuration
 import androidx.compose.foundation.horizontalScroll
@@ -19,7 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bloom.InMemoryPlantServices
+import com.example.bloom.model.PlantTheme
+import com.example.bloom.model.defaultPlantTheme
+import com.example.bloom.model.homeGardenThemes
 import com.example.bloom.ui.theme.BloomTheme
+import com.example.bloom.viewmodel.HomeViewModel
+import com.example.bloom.viewmodel.HomeViewState
 
 @Composable
 fun HomeScreen() {

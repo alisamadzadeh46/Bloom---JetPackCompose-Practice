@@ -1,4 +1,6 @@
-package com.example.bloom
+package com.example.bloom.viewmodel
+
+import com.example.bloom.model.PlantTheme
 
 data class HomeViewState(
     val plantTheme: List<PlantTheme> = emptyList(),

@@ -1,4 +1,6 @@
-package com.example.bloom
+package com.example.bloom.model
+
+import com.example.bloom.R
 
 
 data class PlantTheme(
