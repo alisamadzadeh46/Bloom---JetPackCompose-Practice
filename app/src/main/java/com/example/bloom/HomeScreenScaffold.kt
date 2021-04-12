@@ -1,9 +1,6 @@
-@file:Suppress("UNCHECKED_CAST")
-
 package com.example.bloom
 
 import android.content.res.Configuration
-import androidx.activity.viewModels
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -26,16 +23,17 @@ import com.example.bloom.ui.theme.BloomTheme
 
 @Composable
 fun HomeScreen() {
-    val factory =  object : ViewModelProvider.Factory {
+    val factory = object : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             val repository = InMemoryPlantServices()
+            @Suppress("UNCHECKED_CAST")
             return HomeViewModel(
                 plantRepository = repository
             ) as T
         }
 
     }
-    val homeViewModel : HomeViewModel = viewModel(null,factory)
+    val homeViewModel: HomeViewModel = viewModel(null, factory)
     val currentState: State<HomeViewState> = homeViewModel.viewState.collectAsState()
     HomeScreenScaffold(currentState.value)
 }
