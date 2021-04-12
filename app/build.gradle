@@ -57,6 +57,7 @@ dependencies {
     def navigation = "1.0.0-alpha10"
     implementation "androidx.navigation:navigation-compose:$navigation"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$compose_version"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

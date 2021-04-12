@@ -1,6 +1,9 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.example.bloom
 
 import android.content.res.Configuration
+import androidx.activity.viewModels
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,14 +19,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bloom.ui.theme.BloomTheme
 
 @Composable
-fun HomeScreen(
-    homeViewModel: HomeViewModel
-) {
+fun HomeScreen() {
+    val factory =  object : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            val repository = InMemoryPlantServices()
+            return HomeViewModel(
+                plantRepository = repository
+            ) as T
+        }
+
+    }
+    val homeViewModel : HomeViewModel = viewModel(null,factory)
     val currentState: State<HomeViewState> = homeViewModel.viewState.collectAsState()
     HomeScreenScaffold(currentState.value)
+}
+
+@Composable
+private fun HomeScreenLoader(
+    paddingValues: PaddingValues
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier
+                .wrapContentSize()
+                .align(Alignment.Center)
+        )
+    }
 }
 
 @Composable
@@ -35,10 +66,15 @@ private fun HomeScreenScaffold(
             BloomBottomBar()
         }
     ) { paddingValues ->
-        HomeScreenContent(
-            paddingValues,
-            state,
-        )
+        if (state.showLoading) {
+            HomeScreenLoader(paddingValues)
+        } else {
+            HomeScreenContent(
+                paddingValues,
+                state,
+            )
+        }
+
     }
 
 }

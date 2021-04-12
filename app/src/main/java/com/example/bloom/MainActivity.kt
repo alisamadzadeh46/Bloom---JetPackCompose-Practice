@@ -13,17 +13,7 @@ import com.example.bloom.ui.theme.BloomTheme
 
 @Suppress("UNCHECKED_CAST")
 class MainActivity : ComponentActivity() {
-    private val homeViewModel: HomeViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                val repository = InMemoryPlantServices()
-                return HomeViewModel(
-                    plantRepository = repository
-                ) as T
-            }
 
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +28,7 @@ class MainActivity : ComponentActivity() {
                         LoginScreen(navController)
                     }
                     composable("home") {
-                       HomeScreen(homeViewModel = homeViewModel)
+                       HomeScreen()
                     }
                 }
             }
